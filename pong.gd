@@ -23,6 +23,8 @@ func _process(delta):
 	ball_pos+=direction*ball_speed*delta
    
 	if ( (ball_pos.y<0 and direction.y <0) or (ball_pos.y>screen_size.y and direction.y>0)):
+		get_node("ball/hit_particles").set_emit_timeout(0.5)
+		get_node("ball/hit_particles").set_emitting(true)
 		direction.y = -direction.y
       
 	if ( (left_rect.has_point(ball_pos) and direction.x < 0) or (right_rect.has_point(ball_pos) and direction.x > 0)):
