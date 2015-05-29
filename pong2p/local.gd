@@ -5,6 +5,8 @@ var screen_size
 var pad_size
 var right_score=0
 var left_score=0
+var pause_scene=preload("res://pause_screen_instance.scn")
+var paused_game=pause_scene.instance()
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -71,11 +73,7 @@ func _process(delta):
  
 	get_node("right").set_pos(right_pos)
 
-#pausing the game
-	var pause_scene=preload("res://pause_screen_instance.scn")
-	var paused_game=pause_scene.instance()
-	
+	#pausing the game
 	if Input.is_action_pressed("pause_game"):
 		get_tree().set_pause(true)
 		add_child(paused_game)
-	
