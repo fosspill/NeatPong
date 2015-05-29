@@ -2,7 +2,7 @@
 extends PopupPanel
 
 # member variables here
-var pause_menu=get_root().get_node("pause_screen_popup")
+var pause_menu=get_node("pause_screen_popup")
 
 func _on_resume_game_button_pressed():
 	get_tree().set_pause(false)
