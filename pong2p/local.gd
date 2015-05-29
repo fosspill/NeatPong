@@ -70,3 +70,12 @@ func _process(delta):
 		right_pos.y+=PAD_SPEED*delta
  
 	get_node("right").set_pos(right_pos)
+
+#pausing the game
+	var pause_scene=preload("res://pause_screen_instance.scn")
+	var paused_game=pause_scene.instance()
+	
+	if Input.is_action_pressed("pause_game"):
+		get_tree().set_pause(true)
+		add_child(paused_game)
+	

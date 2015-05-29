@@ -77,3 +77,4 @@ func _process(delta):
 	if Input.is_action_pressed("pause_game"):
 		get_tree().set_pause(true)
 		add_child(paused_game)
+	
