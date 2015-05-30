@@ -11,8 +11,9 @@ var paused_game=pause_scene.instance()
 func _ready():
 	screen_size = get_viewport_rect().size
 	pad_size = get_node("left").get_texture().get_size()
+	add_child(paused_game)
+	paused_game.hide()
 	set_process(true)
-   
 var ball_speed = 80
 var direction = Vector2(-1,0)
 const PAD_SPEED = 150
@@ -54,7 +55,8 @@ func _process(delta):
 		direction=Vector2(-1,0)
 		
 	get_node("ball").set_pos(ball_pos)
-   
+	
+	
       #move left pad   
 	var left_pos = get_node("left").get_pos()
  
@@ -68,11 +70,10 @@ func _process(delta):
       #move right pad   
 	var right_pos = get_node("right").get_pos()
  
-	right_pos.y = ball_pos.y
+	if (right_pos.y > 0 and ball_pos.y < right_pos.y and direction.x > 0):
+		right_pos.y+=-PAD_SPEED*delta
+	if (right_pos.y < screen_size.y and ball_pos.y > right_pos.y and direction.x > 0):
+		right_pos.y+=PAD_SPEED*delta
     
 	get_node("right").set_pos(right_pos)
 	
-	#pausing the game
-	if Input.is_action_pressed("pause_game"):
-		get_tree().set_pause(true)
-		add_child(paused_game)
